@@ -1,4 +1,7 @@
 package top.pmckk.customfish.gui
 
-class EditGui {
+import org.bukkit.inventory.InventoryHolder
+
+class EditGui : InventoryHolder{
+    private val
 }
