@@ -14,13 +14,12 @@ import org.bukkit.inventory.ItemStack
  * @author PMCKK
  */
 class GuiBuilder (private val title: String,private val rows: Int){
-    //校验界面是否可行
+    //校验界面
     init {
         require(rows in 1..6){"界面行数必须是1-6,当前值是: $rows"}
     }
     //创建实例对象并赋值给holder
     private val holder = CustomGuiHolder(title)
-    //待构建的物品栏
     private val inventory : Inventory = Bukkit.createInventory(null,rows*9,title)
 
     //往界面塞物品(按钮)
@@ -63,17 +62,14 @@ class GuiBuilder (private val title: String,private val rows: Int){
         }
         return this
     }
-    //构建并返回物品栏
     fun build(): Inventory{
         holder.setInventory(inventory)
         return inventory
     }
-    //构建并给玩家打开gui
     fun open(player : Player){
         val inv = build()
         player.openInventory(inv)
     }
-    //静态工具方法
     companion object{
         fun createItem(material: Material,displayeName: String,lore: List<String> = emptyList()): ItemStack{
             val item = ItemStack(material)
