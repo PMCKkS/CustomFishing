@@ -6,7 +6,8 @@ import org.bukkit.entity.Player
 object GameCommand {
     fun execute(sender: CommandSender) {
         if (!sender.isOp && !sender.hasPermission("customfishing.game") && sender is Player) {
-            sender.sendMessage("§c你没有权限管理钓鱼小游戏！需要管理员权限。")
+            sender.sendMessage("§6/customfishing game join GameID §f- 加入比赛")
+            sender.sendMessage("§6/customfishing game quit GameID §f- 退出比赛")
             return
         }
         sender.sendMessage("§e钓鱼小游戏帮助菜单：")

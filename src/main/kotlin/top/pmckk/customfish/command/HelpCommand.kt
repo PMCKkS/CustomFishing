@@ -11,7 +11,6 @@ object HelpCommand {
         val isConsole = sender !is Player
 
         sender.sendMessage("§eCustomFishing 帮助菜单:")
-
         sender.sendMessage("§6/customfishing help §f- 查看此帮助信息")
         sender.sendMessage("§6/customfishing gui shop §f- 打开钓鱼商店")
         sender.sendMessage("§6/customfishing gui game §f- 打开钓鱼小游戏菜单")

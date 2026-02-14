@@ -27,7 +27,7 @@ class FishingListener : Listener {
 
         //从奖池获取自定义奖励
         val randomReward = RewardPoolConfig.getRandomReward() ?: run {
-            player.sendMessage("§c当前无可用的钓鱼奖池，未钓到任何物品！")
+            player.sendMessage("§c当前无可用的钓鱼奖池,未钓到任何物品！")
             return
         }
 

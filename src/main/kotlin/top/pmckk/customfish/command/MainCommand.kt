@@ -46,27 +46,29 @@ class MainCommand : TabExecutor{
         val completions = mutableListOf<String>()
 
         //第一层补全
-        if (args.size == 1) {
-            subCommands.forEach {
-                if (it.startsWith(args[0] ?: "", ignoreCase = true)) {
-                    //权限检查
-                    if ((it == "list" || it == "game") && !sender.isOp && !sender.hasPermission("customfishing.admin")) {
-                        return@forEach
+        when (args.size) {
+            1 -> {
+                subCommands.forEach {
+                    if (it.startsWith(args[0] ?: "", ignoreCase = true)) {
+                        //权限检查
+                        if ((it == "list" || it == "game") && !sender.isOp && !sender.hasPermission("customfishing.admin")) {
+                            return@forEach
+                        }
+                        completions.add(it)
                     }
-                    completions.add(it)
                 }
             }
-        }
-        else if (args.size == 2 && args[0]!!.lowercase() == "reload") {
-            val configFiles = listOf("config", "rewardpool", "all")
-            configFiles.forEach {
-                if (it.startsWith(args[1] ?: "", ignoreCase = true)) {
-                    completions.add(it)
+            2 if args[0]!!.lowercase() == "reload" -> {
+                val configFiles = listOf("config", "rewardpool", "all")
+                configFiles.forEach {
+                    if (it.startsWith(args[1] ?: "", ignoreCase = true)) {
+                        completions.add(it)
+                    }
                 }
             }
-        }
-        else if (args.size == 2 && args[0]!!.lowercase() == "gui") {
-            completions.addAll(GuiCommand.getTabCompletions(sender, args[1]))
+            2 if args[0]!!.lowercase() == "gui" -> {
+                completions.addAll(GuiCommand.getTabCompletions(sender, args[1]))
+            }
         }
 
         return completions
