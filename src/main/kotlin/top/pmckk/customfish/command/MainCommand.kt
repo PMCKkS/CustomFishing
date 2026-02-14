@@ -49,7 +49,7 @@ class MainCommand : TabExecutor{
         if (args.size == 1) {
             subCommands.forEach {
                 if (it.startsWith(args[0] ?: "", ignoreCase = true)) {
-                    // 普通玩家隐藏list/game（仅管理员可见）
+                    //权限检查
                     if ((it == "list" || it == "game") && !sender.isOp && !sender.hasPermission("customfishing.admin")) {
                         return@forEach
                     }

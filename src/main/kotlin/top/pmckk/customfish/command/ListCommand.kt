@@ -7,7 +7,7 @@ import top.pmckk.customfish.config.ConfigManager
 object ListCommand {
 
     fun execute(sender: CommandSender) {
-        //权限校验
+        //权限检查
         if (!sender.isOp && !sender.hasPermission("customfishing.list") && sender is Player) {
             sender.sendMessage("§c你没有权限查看奖励池列表！需要管理员权限。")
             return

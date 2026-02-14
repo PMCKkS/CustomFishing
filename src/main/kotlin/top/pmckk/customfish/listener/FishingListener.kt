@@ -15,14 +15,14 @@ class FishingListener : Listener {
     fun onPlayerFishing(event: PlayerFishEvent) {
         val player = event.player
 
-        //仅处理钓到物品战利品的状态
+        //仅处理钓到战利品的状态
         if (event.state != PlayerFishEvent.State.CAUGHT_FISH) return
 
-        //安全获取原版物品实体
+        //获取原版物品实体
         val originalItem = event.caught ?: run {
             return
         }
-        //仅处理物品实体
+        //仅处理物品
         if (originalItem !is Item) return
 
         //从奖池获取自定义奖励
@@ -39,16 +39,16 @@ class FishingListener : Listener {
         }
         //替换原版物品的内容
         originalItem.itemStack = customItem
-        originalItem.pickupDelay = 0 // 玩家可立即拾取
+        originalItem.pickupDelay = 0
 
-        //奖励播报+执行命令
+        //奖励播报以及执行命令
         if (randomReward.broadcast) {
             Bukkit.broadcastMessage("§6[钓鱼大奖] §a${player.name} 钓到了稀有战利品：${randomReward.name}！")
         } else {
             player.sendMessage("§a你钓到了：${randomReward.name}！")
         }
 
-        //执行额外命令（替换玩家名占位符）
+        //执行额外命令后续提供变量这里就会删掉了
         randomReward.commands.forEach { command ->
             if (command.isNotBlank()) {
                 val finalCommand = command.replace("%player_name%", player.name)

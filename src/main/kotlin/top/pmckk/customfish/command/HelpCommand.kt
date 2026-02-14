@@ -6,7 +6,7 @@ import org.bukkit.entity.Player
 object HelpCommand {
 
     fun sendHelp(sender: CommandSender) {
-        // 权限判断
+        //权限检查
         val isAdmin = sender.isOp || sender.hasPermission("customfishing.admin")
         val isConsole = sender !is Player
 
